@@ -115,7 +115,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
     >>> values == {'2', '5', '9'}
     True
     """
-    values: List[int] = []
+    values: tp.List[int] = []
     row = get_row(grid, pos)
     col = get_col(grid, pos)
     block = get_block(grid, pos)
