@@ -3,35 +3,33 @@ import typing as tp
 
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     chiphertext = ""
-    for i, _ in enumerate(plaintext):
-        if plaintext[i].isalpha():
-            a_a = ord(plaintext[i])
-            if plaintext[i].isupper() and a_a >= 91 - shift:
-                chiphertext += chr(a_a - 26 + shift)
-            elif plaintext[i].islower() and a_a >= 123 - shift:
-                chiphertext += chr(a_a - 26 + shift)
+    for letter in plaintext:
+        if letter.isalpha():
+            if letter.islower():
+                letter = chr(ord(letter) + shift)
+                if ord(letter) > ord("z"):
+                    letter = chr(ord(letter) - 26)
             else:
-                chiphertext += chr(a_a + shift)
-        else:
-            chiphertext += plaintext[i]
-    return chiphertext
+                letter = chr(ord(letter) + shift)
+                if ord(letter) > ord("Z"):
+                    letter = chr(ord(letter) - 26)
+        ciphertext += letter
+    return ciphertext
 
 
 def decrypt_caesar(chiphertext: str, shift: int = 3) -> str:
     plaintext = ""
-    for i, _ in enumerate(chiphertext):
-        if chiphertext[i].isalpha():
-            a_a = ord(chiphertext[i])
-            if chiphertext[i].isupper() and a_a <= 64 + shift:
-                plaintext += chr(a_a + 26 - shift)
-            elif chiphertext[i].islower() and a_a <= 96 + shift:
-                plaintext += chr(a_a + 26 - shift)
+    for letter in ciphertext:
+        if letter.isalpha():
+            if letter.islower():
+                letter = chr(ord(letter) - shift)
+                if ord(letter) < ord("a"):
+                    letter = chr(ord(letter) + 26)
             else:
-                plaintext += chr(a_a - shift)
-        elif chiphertext.isspace():
-            continue
-        else:
-            plaintext += chiphertext[i]
+                letter = chr(ord(letter) - shift)
+                if ord(letter) < ord("A"):
+                    letter = chr(ord(letter) + 26)
+        plaintext += letter
     return plaintext
 
 
