@@ -4,16 +4,13 @@ from typing import List
 
 
 def is_prime(n: int) -> bool:
-    if n == 2:
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    else:
         return True
-    elif n == 1:
-        return False
-    if n % 2 == 0:
-        return False
-    value = 3
-    while value ** 2 <= n and n % value != 0:
-        value += 2
-    return value ** 2 > n
 
 
 def gcd(p: int, q: int) -> int:
