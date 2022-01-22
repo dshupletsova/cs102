@@ -90,22 +90,24 @@ class GameOfLife:
                     )
 
     def get_neighbours(self, cell: Cell) -> Cells:
-        a, b = cell[0], cell[1]
-        neighbours = [
-            (y - 1, x - 1),
-            (y - 1, x),
-            (y - 1, x + 1),
-            (y, x + 1),
-            (y + 1, x - 1),
-            (y + 1, x + 1),
-            (y + 1, x),
-            (y, x - 1),
-        ]
+        row, col = cell
         cells = []
-        for coord in neighbours:
-            x, y = coord
-            if 0 <= x < self.cell_height and 0 <= y < self.cell_width:
-                cells.append(self.grid[x][y])
+        if col > 0:
+            cells.append(self.curr_generation[row][col - 1])
+            if row > 0:
+                cells.append(self.curr_generation[row - 1][col - 1])
+            if row < (self.rows - 1):
+                cells.append(self.curr_generation[row + 1][col - 1])
+        if col < (self.cols - 1):
+            cells.append(self.curr_generation[row][col + 1])
+            if row > 0:
+                cells.append(self.curr_generation[row - 1][col + 1])
+            if row < (self.rows - 1):
+                cells.append(self.curr_generation[row + 1][col + 1])
+        if row > 0:
+            cells.append(self.curr_generation[row - 1][col])
+        if row < (self.rows - 1):
+            cells.append(self.curr_generation[row + 1][col])
         return cells
 
     def get_next_generation(self) -> Grid:
