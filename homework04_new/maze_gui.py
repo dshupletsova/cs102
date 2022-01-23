@@ -4,6 +4,7 @@ from typing import List
 
 from maze import add_path_to_grid, bin_tree_maze, solve_maze
 
+
 def draw_cell(x, y, color, size: int = 10):
     x *= size
     y *= size
