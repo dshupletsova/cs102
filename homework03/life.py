@@ -48,26 +48,76 @@ class GameOfLife:
         return grid
 
     def get_neighbours(self, cell: Cell) -> Cells:
-        nbours = []
-        x, y = cell[0], cell[1]
-
-        if x - 1 >= 0:
-            if y - 1 >= 0:
-                nbours.append(self.curr_generation[x - 1][y - 1])
-            nbours.append(self.curr_generation[x - 1][y])
-            if self.rows > y + 1:
-                nbours.append(self.curr_generation[x - 1][y + 1])
-        if 0 <= y - 1:
-            nbours.append(self.curr_generation[x][y - 1])
-        if self.rows > y + 1:
-            nbours.append(self.curr_generation[x][y + 1])
-        if self.cols > x + 1:
-            if 0 <= y - 1:
-                nbours.append(self.curr_generation[x + 1][y - 1])
-            nbours.append(self.curr_generation[x + 1][y])
-            if self.rows > y + 1:
-                nbours.append(self.curr_generation[x + 1][y + 1])
-        return nbours
+        y, x = cell
+        thething = []
+        if 0 < x < len(self.curr_generation[0]) - 1 and 0 < y < len(self.curr_generation) - 1:
+            for i in (-1, 0, 1):
+                for j in (-1, 0, 1):
+                    thething.append(self.curr_generation[y + i][x + j])
+            del thething[4]
+        if x == 0 and y == 0:  # upper left
+            thething = [
+                self.curr_generation[y][x + 1],
+                self.curr_generation[y + 1][x],
+                self.curr_generation[y + 1][x + 1],
+            ]
+        if x == 0 and y == len(self.curr_generation) - 1:  # lower left
+            thething = [
+                self.curr_generation[y][x + 1],
+                self.curr_generation[y - 1][x],
+                self.curr_generation[y - 1][x + 1],
+            ]
+        if x == len(self.curr_generation[0]) - 1 and y == 0:  # upper right
+            thething = [
+                self.curr_generation[y][x - 1],
+                self.curr_generation[y + 1][x],
+                self.curr_generation[y + 1][x - 1],
+            ]
+        if (
+            x == len(self.curr_generation[0]) - 1 and y == len(self.curr_generation) - 1
+        ):  # lower right
+            thething = [
+                self.curr_generation[y][x - 1],
+                self.curr_generation[y - 1][x],
+                self.curr_generation[y - 1][x - 1],
+            ]
+        if x == 0 and 0 < y < len(self.curr_generation) - 1:  # left side
+            thething = [
+                self.curr_generation[y][x + 1],
+                self.curr_generation[y + 1][x],
+                self.curr_generation[y + 1][x + 1],
+                self.curr_generation[y - 1][x],
+                self.curr_generation[y - 1][x + 1],
+            ]
+        if (
+            x == len(self.curr_generation[0]) - 1 and 0 < y < len(self.curr_generation) - 1
+        ):  # right side
+            thething = [
+                self.curr_generation[y][x - 1],
+                self.curr_generation[y + 1][x],
+                self.curr_generation[y + 1][x - 1],
+                self.curr_generation[y - 1][x],
+                self.curr_generation[y - 1][x - 1],
+            ]
+        if 0 < x < len(self.curr_generation[0]) - 1 and y == 0:  # upper side
+            thething = [
+                self.curr_generation[y][x + 1],
+                self.curr_generation[y + 1][x],
+                self.curr_generation[y + 1][x + 1],
+                self.curr_generation[y][x - 1],
+                self.curr_generation[y + 1][x - 1],
+            ]
+        if (
+            0 < x < len(self.curr_generation[0]) - 1 and y == len(self.curr_generation) - 1
+        ):  # lower side
+            thething = [
+                self.curr_generation[y][x + 1],
+                self.curr_generation[y - 1][x],
+                self.curr_generation[y - 1][x + 1],
+                self.curr_generation[y][x - 1],
+                self.curr_generation[y - 1][x - 1],
+            ]
+        return thething
 
     def get_next_generation(self) -> Grid:
         grid = []
