@@ -24,20 +24,17 @@ class GameOfLife:
         self.grid = self.create_grid(randomize=False)
 
     def draw_lines(self) -> None:
-        """Отрисовать сетку"""
         for x in range(0, self.width, self.cell_size):
             pygame.draw.line(self.screen, pygame.Color("black"), (x, 0), (x, self.height))
         for y in range(0, self.height, self.cell_size):
             pygame.draw.line(self.screen, pygame.Color("black"), (0, y), (self.width, y))
 
     def run(self) -> None:
-        """Запустить игру"""
         pygame.init()
         clock = pygame.time.Clock()
         pygame.display.set_caption("Game of Life")
         self.screen.fill(pygame.Color("white"))
 
-        # Создание списка клеток
         self.grid = self.create_grid(randomize=True)
 
         running = True
@@ -70,10 +67,6 @@ class GameOfLife:
         return grid
 
     def draw_grid(self) -> None:
-        """
-        Отрисовка списка клеток с закрашиванием их в соответствующе цвета.
-        """
-
         for y in range(1, self.height, self.cell_size):
             for x in range(1, self.width, self.cell_size):
                 if self.grid[y // self.cell_size][x // self.cell_size] == 0:
