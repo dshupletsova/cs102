@@ -9,24 +9,29 @@ class Console(UI):
         super().__init__(life)
 
     def draw_borders(self, screen) -> None:
+        """Отобразить рамку."""
         screen.border("|", "|", "-", "-", "+", "+", "+", "+")
 
     def draw_grid(self, screen) -> None:
-        for i, row in enumerate(self.life.curr_generation):
-            for j, cell in enumerate(row):
-                if cell == 1:
-                    fill = "+"
-                else:
-                    fill = " "
-                screen.addch(i + 1, j + 1, fill)
+        """Отобразить состояние клеток."""
+        grid = self.life.curr_generation
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                cell = "*" if grid[i][j] == 1 else " "
+                screen.addch(i + 1, j + 1, cell)
 
     def run(self) -> None:
-        screen = curses.initscr()
-        running = True
-        while running:
-            self.draw_grid(screen)
-            self.draw_borders(screen)
+        window = curses.initscr()
+        game_running = True
+        while game_running:
+            self.draw_grid(window)
+            self.draw_borders(window)
             self.life.step()
-            screen.refresh()
-            curses.napms(100)
+            window.refresh()
+            curses.napms(150)
         curses.endwin()
+
+
+life = GameOfLife((24, 80), max_generations=50)
+ui = Console(life)
+ui.run()
