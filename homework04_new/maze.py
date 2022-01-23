@@ -21,7 +21,9 @@ def remove_wall(
     num = choice((0, 1))
     if x - 1 != 0 and y + 1 != col - 1 and num == 1 or x - 1 == 0 and y + 1 != col - 1:
         grid[x][y + 1] = " "
-    elif x - 1 != 0 and y + 1 != col - 1 and num == 0 or x - 1 != 0 and y + 1 == col - 1:
+    elif (
+        x - 1 != 0 and y + 1 != col - 1 and num == 0 or x - 1 != 0 and y + 1 == col - 1
+    ):
         grid[x - 1][y] = " "
     return grid
 
@@ -54,7 +56,9 @@ def bin_tree_maze(rows: int = 15, cols: int = 15, random_exit: bool = True):
     if random_exit:
         x_in, x_out = randint(0, rows - 1), randint(0, rows - 1)
         y_in = randint(0, cols - 1) if x_in in (0, rows - 1) else choice((0, cols - 1))
-        y_out = randint(0, cols - 1) if x_out in (0, rows - 1) else choice((0, cols - 1))
+        y_out = (
+            randint(0, cols - 1) if x_out in (0, rows - 1) else choice((0, cols - 1))
+        )
     else:
         x_in, y_in = 0, cols - 2
         x_out, y_out = rows - 1, 1
