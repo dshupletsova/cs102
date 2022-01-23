@@ -1,8 +1,7 @@
+import copy
 import pathlib
 import random
 import typing as tp
-
-import copy
 from copy import deepcopy
 
 import pygame
