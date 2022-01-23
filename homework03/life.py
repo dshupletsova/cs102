@@ -18,7 +18,7 @@ class GameOfLife:
         max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
-        self.rows, self.cols = size
+        self.cell_height, self.cell_width = size
         # Предыдущее поколение клеток
         self.prev_generation = self.create_grid()
         # Текущее поколение клеток
