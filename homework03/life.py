@@ -20,7 +20,7 @@ class GameOfLife:
         max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
-        self.cols, self.rows = size
+        self.rows, self.cols = size
         # Предыдущее поколение клеток
         self.prev_generation = self.create_grid()
         # Текущее поколение клеток
@@ -33,16 +33,16 @@ class GameOfLife:
     def create_grid(self, randomize: bool = True) -> Grid:
         grid = []
         if randomize is False:
-            for _ in range(self.cols):
+            for _ in range(self.rows):
                 col = []
-                for _ in range(self.rows):
+                for _ in range(self.cols):
                     col.append(0)
                 grid.append(col)
             return grid
 
-        for _ in range(self.cols):
+        for _ in range(self.rows):
             col = []
-            for _ in range(self.rows):
+            for _ in range(self.cols):
                 col.append(random.choice((0, 1)))
             grid.append(col)
         return grid
@@ -55,25 +55,25 @@ class GameOfLife:
             if y - 1 >= 0:
                 nbours.append(self.curr_generation[x - 1][y - 1])
             nbours.append(self.curr_generation[x - 1][y])
-            if self.cols > y + 1:
+            if self.rows > y + 1:
                 nbours.append(self.curr_generation[x - 1][y + 1])
         if 0 <= y - 1:
             nbours.append(self.curr_generation[x][y - 1])
-        if self.cols > y + 1:
+        if self.rows > y + 1:
             nbours.append(self.curr_generation[x][y + 1])
-        if self.rows > x + 1:
+        if self.cols > x + 1:
             if 0 <= y - 1:
                 nbours.append(self.curr_generation[x + 1][y - 1])
             nbours.append(self.curr_generation[x + 1][y])
-            if self.cols > y + 1:
+            if self.rows > y + 1:
                 nbours.append(self.curr_generation[x + 1][y + 1])
         return nbours
 
     def get_next_generation(self) -> Grid:
         grid = []
-        for y in range(0, self.rows):
+        for y in range(0, self.cols):
             row = []
-            for x in range(0, self.cols):
+            for x in range(0, self.rows):
                 if sum(self.get_neighbours((y, x))) != 3 and (
                     self.curr_generation[y][x] != 1 or sum(self.get_neighbours((y, x))) != 2
                 ):
@@ -81,7 +81,7 @@ class GameOfLife:
                 else:
                     row.append(1)
             grid.append(row)
-        return
+        return grid
 
     def step(self) -> None:
         """
