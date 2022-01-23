@@ -122,17 +122,11 @@ class GameOfLife:
         """
         Прочитать состояние клеток из указанного файла.
         """
-        grid = []
-        with open(f"{filename}") as file:
-            lines = file.readlines()
-        for i in range(len(lines)):
-            row = []
-            for j in range(len(lines[0])):
-                row.append(int(lines[i][j]))
-            grid.append(row)
-        game = GameOfLife((len(grid), len(grid[0])))
-        game.curr_generation = grid
-        return game
+        with open(filename, encoding="utf-8") as p:
+            thegrid = [[int(cell) for cell in row.strip()] for row in p]
+            gol = GameOfLife((len(thegrid), len(thegrid[0])))
+            gol.curr_generation = thegrid
+            return gol
 
     def save(self, filename: pathlib.Path) -> None:
         """
