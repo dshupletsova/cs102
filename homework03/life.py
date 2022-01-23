@@ -73,8 +73,8 @@ class GameOfLife:
             row = []
             for x in range(0, self.cols):
                 if sum(self.get_neighbours((y, x))) != 3 and (
-                    self.curr_generation[y][x] != 1 or sum(self.get_neighbours((y, x))) != 2
-                ):
+                     self.curr_generation[y][x] != 1 or sum(self.get_neighbours((y, x))) != 2
+                 ):
                     row.append(0)
                 else:
                     row.append(1)
