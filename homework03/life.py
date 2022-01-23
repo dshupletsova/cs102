@@ -92,7 +92,7 @@ class GameOfLife:
         nextgen = self.get_next_generation()
         self.curr_generation = nextgen
         self.generations = self.generations + 1
-        
+
     @property
     def is_max_generations_exceeded(self) -> bool:
         """
@@ -102,7 +102,7 @@ class GameOfLife:
             return self.generations >= self.max_generations
         else:
             return False
-    
+
     @property
     def is_changing(self) -> bool:
         """
