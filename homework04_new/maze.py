@@ -50,7 +50,9 @@ def bin_tree_maze(
     if random_exit:
         x_in, x_out = randint(0, rows - 1), randint(0, rows - 1)
         y_in = randint(0, cols - 1) if x_in in (0, rows - 1) else choice((0, cols - 1))
-        y_out = randint(0, cols - 1) if x_out in (0, rows - 1) else choice((0, cols - 1))
+        y_out = (
+            randint(0, cols - 1) if x_out in (0, rows - 1) else choice((0, cols - 1))
+        )
     else:
         x_in, y_in = 0, cols - 2
         x_out, y_out = rows - 1, 1
@@ -100,17 +102,31 @@ def encircled_exit(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) ->
     pass
 
 
-def solve_maze(
-    grid: List[List[Union[str, int]]],
-) -> Tuple[
-    List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]
-]:
+def solve_maze(grid: List[List[Union[str, int]]]):
     """
     :param grid:
     :return:
     """
-
-    pass
+    coord = get_exits(grid)
+    if len(coord) == 1:
+        return grid, coord[0]
+    if not encircled_exit(grid, coord[0]) and not encircled_exit(grid, coord[1]):
+        for x, row in enumerate(grid):
+            for y, _ in enumerate(row):
+                if grid[x][y] == " ":
+                    grid[x][y] = 0
+        grid[coord[0][0]][coord[0][1]], grid[coord[1][0]][coord[1][1]] = 1, 0
+        k = 1
+        while grid[coord[1][0]][coord[1][1]] == 0:
+            grid = make_step(grid, k)
+            k += 1
+        path = shortest_path(grid, coord[1])
+        for x, row in enumerate(grid):
+            for y, _ in enumerate(row):
+                if grid[x][y] != " " and grid[x][y] != "■":
+                    grid[x][y] = " "
+        return grid, path
+    return grid, None
 
 
 def add_path_to_grid(
