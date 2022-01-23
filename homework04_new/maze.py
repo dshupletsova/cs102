@@ -13,7 +13,6 @@ def remove_wall(
     grid: List[List[Union[str, int]]], coord: Tuple[int, int]
 ) -> List[List[Union[str, int]]]:
     """
-
     :param grid:
     :param coord:
     :return:
@@ -26,7 +25,6 @@ def bin_tree_maze(
     rows: int = 15, cols: int = 15, random_exit: bool = True
 ) -> List[List[Union[str, int]]]:
     """
-
     :param rows:
     :param cols:
     :param random_exit:
@@ -64,7 +62,6 @@ def bin_tree_maze(
 
 def get_exits(grid: List[List[Union[str, int]]]) -> List[Tuple[int, int]]:
     """
-
     :param grid:
     :return:
     """
@@ -74,7 +71,6 @@ def get_exits(grid: List[List[Union[str, int]]]) -> List[Tuple[int, int]]:
 
 def make_step(grid: List[List[Union[str, int]]], k: int) -> List[List[Union[str, int]]]:
     """
-
     :param grid:
     :param k:
     :return:
@@ -87,7 +83,6 @@ def shortest_path(
     grid: List[List[Union[str, int]]], exit_coord: Tuple[int, int]
 ) -> Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]:
     """
-
     :param grid:
     :param exit_coord:
     :return:
@@ -97,7 +92,6 @@ def shortest_path(
 
 def encircled_exit(grid: List[List[Union[str, int]]], coord: Tuple[int, int]) -> bool:
     """
-
     :param grid:
     :param coord:
     :return:
@@ -110,7 +104,6 @@ def solve_maze(
     grid: List[List[Union[str, int]]],
 ) -> Tuple[List[List[Union[str, int]]], Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]]:
     """
-
     :param grid:
     :return:
     """
@@ -122,7 +115,6 @@ def add_path_to_grid(
     grid: List[List[Union[str, int]]], path: Optional[Union[Tuple[int, int], List[Tuple[int, int]]]]
 ) -> List[List[Union[str, int]]]:
     """
-
     :param grid:
     :param path:
     :return:
