@@ -1,5 +1,6 @@
 import pathlib
 import random
+from copy import deepcopy
 import typing as tp
 
 import pygame
@@ -79,7 +80,7 @@ class GameOfLife:
                 else:
                     row.append(1)
             grid.append(row)
-        return
+        return grid
 
     def step(self) -> None:
         """
