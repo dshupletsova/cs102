@@ -18,7 +18,7 @@ class GameOfLife:
         max_generations: tp.Optional[float] = float("inf"),
     ) -> None:
         # Размер клеточного поля
-        self.cell_height, self.cell_width = size
+        self.cols, self.rows = size
         # Предыдущее поколение клеток
         self.prev_generation = self.create_grid()
         # Текущее поколение клеток
@@ -31,16 +31,16 @@ class GameOfLife:
     def create_grid(self, randomize: bool = True) -> Grid:
         grid = []
         if randomize is False:
-            for _ in range(self.cell_height):
+            for _ in range(self.cols):
                 col = []
-                for _ in range(self.cell_width):
+                for _ in range(self.rows):
                     col.append(0)
                 grid.append(col)
             return grid
 
-        for _ in range(self.cell_height):
+        for _ in range(self.cols):
             col = []
-            for _ in range(self.cell_width):
+            for _ in range(self.rows):
                 col.append(random.choice((0, 1)))
             grid.append(col)
         return grid
