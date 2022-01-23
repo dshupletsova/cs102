@@ -79,7 +79,7 @@ class GameOfLife:
                 else:
                     row.append(1)
             grid.append(row)
-        return 
+        return
 
     def step(self) -> None:
         """
