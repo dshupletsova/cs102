@@ -1,6 +1,6 @@
 import re
 import textwrap
-import time
+import tim
 import typing as tp
 from string import Template
 
