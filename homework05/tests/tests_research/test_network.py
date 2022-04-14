@@ -1,6 +1,5 @@
 import re
 import unittest
-
 import responses
 from research.network import ego_network
 
