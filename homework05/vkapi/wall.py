@@ -1,4 +1,4 @@
-import r
+import re
 import textwrap
 import time
 import typing as tp
