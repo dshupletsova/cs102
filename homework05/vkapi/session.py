@@ -1,4 +1,3 @@
-import time
 import typing as tp
 
 import requests  # type: ignore
@@ -22,37 +21,24 @@ class Session:
         max_retries: int = 3,
         backoff_factor: float = 0.3,
     ) -> None:
+        self.session = requests.Session()
         self.base_url = base_url
         self.timeout = timeout
-        self.session = requests.Session()
-        errors = []
-        for i in range(400, 600):
-            errors.append(i)
-
-        retry = Retry(
-            method_whitelist=["POST", "GET"],
+        method_whitelist = ["GET", "POST"]
+        self.retries = Retry(
             total=max_retries,
             backoff_factor=backoff_factor,
-            status_forcelist=errors,
+            method_whitelist=method_whitelist,
+            status_forcelist=[i for i in range(400, 601)],
         )
-        adapter = HTTPAdapter(max_retries=retry)
-        self.session.mount("https://", adapter)
+        self.adapter = HTTPAdapter(max_retries=self.retries)
+        self.http = requests.Session()
+        self.session.mount(base_url, self.adapter)
 
     def get(self, url: str, *args: tp.Any, **kwargs: tp.Any) -> requests.Response:
-
-        if "timeout" in kwargs:
-            self.timeout = kwargs["timeout"]
-        response = self.session.get(
-            self.base_url + "/" + url, timeout=self.timeout, *args, **kwargs
-        )
-
-        return response
+        kwargs["timeout"] = (self.timeout if "timeout" not in kwargs else kwargs["timeout"])
+        return self.session.get(self.base_url + url, *args, **kwargs)
 
     def post(self, url: str, *args: tp.Any, **kwargs: tp.Any) -> requests.Response:
-
-        if "timeout" in kwargs:
-            self.timeout = kwargs["timeout"]
-        response = self.session.post(
-            self.base_url + "/" + url, timeout=self.timeout, *args, **kwargs
-        )
-        return response
+        kwargs["timeout"] = (self.timeout if "timeout" not in kwargs else kwargs["timeout"])
+        return self.session.post(self.base_url + url, *args, **kwargs)
