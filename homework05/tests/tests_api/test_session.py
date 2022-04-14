@@ -42,7 +42,7 @@ class TestSession(unittest.TestCase):
     def test_backoff_factor(self):
         backoff_factor = 0.5
         max_retries = 4
-        total_delay = sum(backoff_factor * (2**n) for n in range(1, max_retries))
+        total_delay = sum(backoff_factor * (2 ** n) for n in range(1, max_retries))
 
         session = Session(
             "https://example.com",
@@ -89,3 +89,7 @@ class TestSession(unittest.TestCase):
         session = Session("https://example.com", max_retries=1)
         with self.assertRaises(ConnectionError):
             _ = session.get("")
+
+if __name__ == "__main__":
+    game = TestSession()
+    print(game.test_raises_on_timeout_error())
