@@ -116,3 +116,4 @@ def get_wall_execute(
 
 if __name__ == "__main__":
     print(get_wall_execute(domain="vk", count=10, max_count=1000))
+    
