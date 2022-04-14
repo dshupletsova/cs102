@@ -69,3 +69,8 @@ class GetWallTestCase(unittest.TestCase):
         self.assertGreaterEqual(
             end - start, 2.0, msg="Слишком много запросов в секунду"
         )
+
+
+if __name__ == "__main__":
+    game = GetWallTestCase()
+    print(game.test_total_count())
