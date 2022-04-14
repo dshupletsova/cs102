@@ -1,7 +1,7 @@
 import re
 import textwrap
 import time
-import typing as tp
+import typing as t
 from string import Template
 
 import pandas as pd
