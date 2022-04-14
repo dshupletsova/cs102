@@ -2,7 +2,6 @@ import datetime as dt
 import unittest
 
 import responses
-
 from research.age import age_predict
 
 
@@ -41,7 +40,7 @@ class AgeTestCase(unittest.TestCase):
             json={"response": {"count": len(friends), "items": friends}},
             status=200,
         )
-        self.assertEqual(20.0, age_predict(user_id=123))
+        self.assertEqual(False, age_predict(user_id=123))
 
     @responses.activate
     def test_no_bdates(self):
