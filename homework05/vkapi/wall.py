@@ -2,7 +2,7 @@ import re
 import textwrap
 import time
 import typing as tp
-from string import Template
+from string import Templat
 
 import pandas as pd
 import requests
