@@ -22,9 +22,8 @@ def age_predict(user_id: int) -> tp.Optional[float]:
         except:
             continue
         age_of_people.append(
-            time.year
-            - bdate.year
-            - time.month < bdate.month or (time.month == bdate.month and time.day < bdate.day)
+            time.year - bdate.year - time.month < bdate.month
+            or (time.month == bdate.month and time.day < bdate.day)
         )
 
     if age_of_people:
