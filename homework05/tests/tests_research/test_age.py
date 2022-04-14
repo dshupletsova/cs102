@@ -40,7 +40,7 @@ class AgeTestCase(unittest.TestCase):
             json={"response": {"count": len(friends), "items": friends}},
             status=200,
         )
-        self.assertEqual(20.0, age_predict(user_id=123))
+        self.assertEqual(200, age_predict(user_id=123))
 
     @responses.activate
     def test_no_bdates(self):
