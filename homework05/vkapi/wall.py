@@ -1,5 +1,5 @@
 import re
-import textwra
+import textwrap
 import time
 import typing as tp
 from string import Template
