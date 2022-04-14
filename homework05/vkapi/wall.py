@@ -2,9 +2,10 @@ import re
 import textwrap
 import time
 import typing as tp
-import pandas as pd
-import requests  
 from string import Template
+
+import pandas as pd
+import requests
 from pandas import json_normalize
 from vkapi import config, session
 from vkapi.exceptions import APIError
