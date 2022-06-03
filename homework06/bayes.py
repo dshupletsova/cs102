@@ -17,7 +17,6 @@ class NaiveBayesClassifier:
         self.words_count = 0
 
     def fit(self, X, y):
-        """Fit Naive Bayes classifier according to X, y."""
         for xi, yi in zip(X, y):
             self.class_counter[yi] += 1
             for word in xi.split():
@@ -26,7 +25,6 @@ class NaiveBayesClassifier:
                 self.words_count += 1
 
     def predict(self, X):
-        """Perform classification on an array of test vectors X."""
         predicted = []
         for string in X:
             predicted.append(self._predict_class(string))
@@ -53,7 +51,6 @@ class NaiveBayesClassifier:
         return class_ind
 
     def score(self, X_test, y_test):
-        """Returns the mean accuracy on the given test data and labels."""
         results = self.predict(X_test)
         return sum(y_test[it] == results[it] for it in range(len(y_test))) / len(y_test)
 
