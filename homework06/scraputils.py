@@ -50,7 +50,8 @@ def extract_news(parser1: BeautifulSoup):
             [title_list[ind], author_list[ind], url_list[ind], comments_list[ind], point_list[ind]]
         )
     return news_list
-
+ 
+   
 def extract_next_page(parser1: BeautifulSoup):
     link = parser1.select(".morelink")[0]["href"]
     # print(str(link))
