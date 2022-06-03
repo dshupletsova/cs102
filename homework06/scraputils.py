@@ -3,18 +3,15 @@ from bs4 import BeautifulSoup
 
 
 def extract_news(parser1: BeautifulSoup):
-
     news_list = []
-
     title_list = []
     url_list = []
     comments_list = []
     point_list = []
     author_list = []
-
     subtext_line = parser1.select(".subtext")
-
-    all_things = parser1.find_all("tr", {"cl# type: ignore
+    all_things = parser1.find_all("tr", {"cl# type: ignore})
+                                         
 import requests
 from bs4 import BeautifulSoup
 
