@@ -81,8 +81,3 @@ if __name__ == "__main__":
         y.append(target)
     X = [clean(x).lower() for x in X]
     print(X[0], "|||", y[0])
-    """
-    X_train, y_train, X_test, y_test = X[:3900], y[:3900], X[3900:], y[3900:]
-    model = NaiveBayesClassifier(1)
-    model.fit(X_train, y_train)
-    """
