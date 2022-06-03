@@ -108,7 +108,6 @@ def get_news(url, n_pages=1):
 
 def extract_next_page(parser1: BeautifulSoup):
     link = parser1.select(".morelink")[0]["href"]
-    # print(str(link))
     return str(link)
 
 
