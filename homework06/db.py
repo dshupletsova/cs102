@@ -1,4 +1,4 @@
-from scraputils import get_news
+ scraputils import get_news
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -21,3 +21,4 @@ class News(Base):
 
 
 s = session()
+
