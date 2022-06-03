@@ -45,13 +45,11 @@ def extract_news(parser1: BeautifulSoup):
             comments_list.append(int(comments.split()[0]))
     print(comments_list)
 
-
     for ind in range(len(title_list)):
         news_list.append(
             [title_list[ind], author_list[ind], url_list[ind], comments_list[ind], point_list[ind]]
         )
     return news_list
-
 
 def extract_next_page(parser1: BeautifulSoup):
     link = parser1.select(".morelink")[0]["href"]
