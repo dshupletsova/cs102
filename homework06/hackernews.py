@@ -1,4 +1,4 @@
-import sqlalchemy.ex
+import sqlalchemy.exe
 from bayes import NaiveBayesClassifier, label_news
 from bottle import redirect, request, route, run, template
 from db import News, session
